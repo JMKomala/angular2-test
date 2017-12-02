@@ -33,3 +33,69 @@ npm install --save @angular/flex-layout@latest
 
 MaterialModule has therefore been deprecated in favor of defining a project-specific custom material module where you import and export only the needed components. Here’s what our module can look like:
 
+
+## Generating new components with ANGULAR CLI
+```
+ng generate component componentName
+ * ng generate component componentName
+```
+    * note if there is more than one module in the app folder then you will specify the module name to import to.
+```
+ng generate component componentName --module=app.module
+```
+*  anotehr option is to add a new folder, like app/shared and paste your material.module.ts in it.
+
+## creating  new components
+1. When a new component is created in needs to registered/imported into the main app.module.ts
+```
+import { NewComponent } from './new/new.component';
+```
+2. It also needs to be declared in @NgModule
+```
+@NgModule({
+  declarations: [
+    ...
+    NewComponent,
+    ...
+  ],...
+```
+
+## creating a new class in a module
+1. create a top level variable in the component
+```
+const DISHES: Dish[] = [
+  {
+    name: 'Uthappizza',
+    image: '/assets/images/uthappizza.png',
+    category: 'mains',
+    price: '4.99',
+  },{name:......}
+]
+```
+2. export the variable in the line 'export class nameComponent implements OnInit{}'
+```
+export class MenuComponent implements OnInit {
+  dishes: Dish[] = DISHES;
+  ...
+}
+```
+
+## Creating shared classes 
+1. create a new file fileName.ts in the shared folder
+2. Remember that Typescript enforces declaring var and property types. 
+```
+export class Dish {
+    name: string;
+    image: string;
+    category: string;
+    label:string;
+    price:string;
+    description:string;
+}
+```
+3. Now we can import class into another component .
+```
+import { Dish } from '../shared/dish';
+```
+
+## DataBinding in Angular
