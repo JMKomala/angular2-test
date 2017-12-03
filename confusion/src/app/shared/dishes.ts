@@ -1,4 +1,4 @@
-import { Dish} from './dish';
+import { Dish} from './classes/dish';
 
 export const DISHES: Dish []=  [
     {

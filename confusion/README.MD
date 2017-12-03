@@ -46,7 +46,19 @@ ng generate component componentName --module=app.module
 *  anotehr option is to add a new folder, like app/shared and paste your material.module.ts in it.
 
 ## creating  new components
-1. When a new component is created in needs to registered/imported into the main app.module.ts
+### Component
+1. Import Dependencies
+    * When creating a new component, it needs the dependency  Component the dependency from @angular/core
+```
+import { Component} from '@angular/core
+```
+2. Export Component
+    * Export the component name 
+```
+export class MenuComponent implements OnInit
+```
+### Register Component
+1. Then register/import the component in the main module 'app.module.ts.
 ```
 import { NewComponent } from './new/new.component';
 ```
@@ -59,7 +71,7 @@ import { NewComponent } from './new/new.component';
     ...
   ],...
 ```
-
+3. Now we can drop our component where needed
 ## creating a new class in a module
 1. create a top level variable in the component
 ```

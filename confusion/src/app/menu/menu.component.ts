@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 // import { DishDetailComponent } from '../dish-detail/dish-detail.component';
-import { Dish } from '../shared/dish';
+import { Dish } from '../shared/classes/dish';
 import { DISHES } from '../shared/dishes';
 
 @Component({
@@ -18,7 +18,8 @@ export class MenuComponent implements OnInit {
   }
 
   onSelect = (dish) => {
-  this.selectedDish= dish;
+    console.log(dish);
+    this.selectedDish = dish;
   }
 
 }

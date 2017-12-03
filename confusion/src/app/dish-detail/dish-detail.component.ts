@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { DatePipe } from '@angular/common';
-import {Dish} from '../shared/dish'
+import {Dish} from '../shared/classes/dish';
 
 @Component({
   selector: 'app-dish-detail',
@@ -9,7 +9,7 @@ import {Dish} from '../shared/dish'
 })
 
 export class DishDetailComponent implements OnInit {
-  @Input() dish = Dish;
+  @Input() dish=Dish;
   constructor() { }
 
   ngOnInit() {
