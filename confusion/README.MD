@@ -111,3 +111,47 @@ import { Dish } from '../shared/dish';
 ```
 
 ## DataBinding in Angular
+
+
+##  Dependency Injection
+* DI involves four roles
+1. The service
+2. The client
+3. The interfaces
+4. The injector
+
+* THe Angular injector subsystem is responsible for 
+1. creating components
+2. resolving their dependencies
+3. providing them to other components
+
+## Creating Services
+1. ng generate service services/dish
+2. in name.service.ts file. create appropriate methods
+```
+export class DishService {...
+  getDishes(): Dish[]{
+    return DISHES;
+  }
+..
+}
+```
+3. inject the service in app.module.ts providers[]
+```
+providers: [DishService],
+'''
+```
+4. Now bring in the service to the component
+```
+import {DishService} from '../services/dish'
+```
+5. Then inject the service in the component constructor to make it available to the component
+```
+constructor(private dishService:DishService) { }
+```
+6. fetch information on init
+```
+ngOnInit() { 
+    this.dishes = this.dishService.getDishes();
+  }
+```
