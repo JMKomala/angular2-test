@@ -38,6 +38,8 @@ MaterialModule has therefore been deprecated in favor of defining a project-spec
 ```
 ng generate component componentName
  * ng generate component componentName
+ or just ...
+ * ng g component componentName
 ```
     * note if there is more than one module in the app folder then you will specify the module name to import to.
 ```

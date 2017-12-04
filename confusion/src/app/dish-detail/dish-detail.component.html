@@ -5,7 +5,7 @@
         <h3>{{dish.name | uppercase}}</h3>
       </mat-card-title>
     </mat-card-header>
-    <img mat-card-img  style="height:auto; width:100%;"src="{{dish.image}}" alt="{{dish.name}}">
+    <img mat-card-img style="height:auto; width:100%;" src="{{dish.image}}" alt="{{dish.name}}">
     <mat-card-content>
       <p>{{dish.description}}</p>
     </mat-card-content>
@@ -15,14 +15,14 @@
     </mat-card-actions>
   </mat-card>
 </div>
-<div fxFlex>
+<div fxFlex *ngIf="dish">
   <h2>Comments</h2>
   <hr>
   <mat-list>
-      <mat-list-item *ngFor="let comment of dish.comments">
-        <h3 matLine> {{comment.comment}} </h3>
-        <p matLine> {{comment.rating}} </p>
-        <p matLine >--{{comment.author}} {{comment.date | date:short}}</p>
-      </mat-list-item>
-    </mat-list>
-  </div>
+    <mat-list-item *ngFor="let comment of dish.comments">
+      <h3 matLine> {{comment.comment}} </h3>
+      <p matLine> {{comment.rating}} </p>
+      <p matLine>--{{comment.author}} {{comment.date | date:short}}</p>
+    </mat-list-item>
+  </mat-list>
+</div>
