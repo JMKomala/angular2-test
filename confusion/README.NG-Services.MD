@@ -44,3 +44,5 @@ ngOnInit() {
     this.dishes = this.dishService.getDishes();
   }
 ```
+
+## NOTE: DONT FORGET TO ADD SERVICES TO YOUR APP.MOdule.ts
