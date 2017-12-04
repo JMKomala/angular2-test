@@ -1,19 +1,35 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { DatePipe } from '@angular/common';
+
+import { Params, ActivatedRoute } from '@angular/router';
+import { Location } from '@angular/common';
+
 import { Dish } from '../shared/classes/dish';
+import { DishService } from '../services/dish.service';
+
 @Component({
   selector: 'app-dish-detail',
   templateUrl: './dish-detail.component.html',
   styleUrls: ['./dish-detail.component.scss']
 })
 
-
-
 export class DishDetailComponent implements OnInit {
-  @Input() dish = Dish;
+  dish: Dish; // @Input() dish:Dish;
 
-  constructor() { }
+  constructor(
+    private dishService: DishService,
+    private route: ActivatedRoute,
+    private location: Location
+  ) { }
+
   ngOnInit() {
+    let id = +this.route.snapshot.params['id'];
+    this.dish = this.dishService.getDish(id);
+    console.log(this.dish);
   }
 
+  //allows us to go back to previous item in the browser
+  goBack(): void {
+    this.location.back();
+  }
 }

@@ -1,10 +1,15 @@
 ## ANGULAR ROUTING
-* Create new module for routing
-* Create paths and routes for components
-* Config the routing module
-* Configure app.module.ts 
-* Use routing in our root and templates
-
+* BASIC ROUTING
+  * Create new module for routing
+  * Create paths and routes for components
+  * Config the routing module
+  * Configure app.module.ts 
+  * Use routing in our root and templates
+* PARAMETERS
+  * HANDLING URL PARAMETERS
+    * Specify a token in path.. path/:id
+    * Passing the parameter
+  * HANDLING QUERY PARAMETERS
 ### CREATE ROUTING MODULE
 1. Create a new module that will handle routing for our app
 ```
@@ -97,3 +102,28 @@ Note: the default view is home so we should expect /home
 <a mat-button routerLink="/home"><span class="fa fa-home fa-lg"></span> Home</a>
 ```
 Now when that link is clicked it will change the view.
+
+
+## PARAMETERS 
+
+### Handling URL parameter
+1. When creating a path specify a token
+```
+{ path: 'dishdetail/:id', component: DishDetailComponent },
+```
+2. Pass argument to parameter in a link
+```
+<a *ngFor = "let dish of dishes" [routerLink] = "['/dishdetil',dish.id]">
+```
+3. Url Parameters can also be used within a method using router.navigate
+```
+this.router.navigate(['/dishdetail',dish.id]);
+```
+
+4. ActivatedRoute service from @angular/router library
+  * provides useful info about routes
+  - url: An Observable of the route path. as array strings
+  - params: An Observable that contains the required and optional parameter specific to the route
+  - queryParams: An Observable that contains the query parameters available to all routes
+
+5. 

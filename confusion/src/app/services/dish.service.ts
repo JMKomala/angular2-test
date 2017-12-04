@@ -24,8 +24,8 @@ export class DishService {
   //So this way, you'll extract out that specific dish from this array and then return that dish from this getDish method.  and then selecting the first element of the filter returned array
   
   getDish(id: number): Dish {
-    return DISHES.filter((dish) => {
-      dish.id === id}
+    return DISHES.filter((dish) => (
+      dish.id === id)
     )[0];
   }
 
