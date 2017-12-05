@@ -12,7 +12,9 @@ leaders:Leader[]
   constructor(private leaderService : LeaderService) { }
 
   ngOnInit() {
-    this.leaders = this.leaderService.getLeaders();
+    this.leaderService.getLeaders()
+    .then(response => {this.leaders= response})
+    .catch(error => {console.log(error)});
   }
 
 }

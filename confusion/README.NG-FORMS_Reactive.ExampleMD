@@ -1,0 +1,117 @@
+## CREATING A REACTIVE FORM 
+* import Reactive Forms Module
+* create class to handle form inputs
+* use FormBuilder to create form inside the component
+* bind reactive form properties to html form inputs
+
+### Import ReactiveFormsModule
+1. Import module
+```
+import { ReactiveFormsModule} from '@angular/forms';
+```
+
+2. add the module to our decorator @NgModule
+```
+@NgModule({
+. . .
+
+  imports: [
+    . . .
+    ReactiveFormsModule
+  ],
+  
+  . . .
+  ```
+
+### Create class to handle form inputs
+1. create a new file feedback.ts
+    * the structure of the class  represents the data model that corresponds to the feedback a user can submit about our restaurant within our Angular application
+    * it will be mapped to the form model of the component
+    * later when server side is implemented it allows the data to be mapped to data stored on the server.
+
+2. create the class
+```
+export class Feedback {
+    firstname: string;
+    lastname: string;
+    telnum: number;
+    email: string;
+    agree: boolean;
+    contacttype: string;
+    message: string;
+};
+
+export const ContactType = ['None', 'Tel', 'Email'];
+```
+### Create reactive form in the component.ts
+
+1. Import form dependencies in the component we want to use our form. >> contact.component.ts
+```
+import { FormBuilder, FormGroup, Validators} from '@angular/forms'
+```
+2. Import classes
+```
+import { FeedBack, ContactType } from '../shared/classes/feedback';
+```
+
+3. Declare necessary variables and their types
+```
+feedbackForm : FormGroup;
+feedback: Feedback;
+contactType = ContactType;
+```
+
+4. Create a constructor for the reactive form. Inject FOrmBuilder into the component constructor. 
+```
+  constructor(private fb: FormBuilder) { this.createForm(); }
+```
+
+5. create a separate method called  createForm Which I will invoke within the constructor. So when this class is built the form will be created. So the createForm will be a method within which I will create the actual form. So let me add in the createForm method here. 
+```
+createForm() {
+    this.feedbackForm = this.fb.group({
+      firstName: '',
+      lastName:'',
+      telNum:0,
+      email:'',
+      agree: false,
+      contactType:'None',
+      message:''
+    })
+```
+Note: if your data model is somewhat different from the form model you need to map in individual properties explicitly.
+
+6. Create reactive form in the component html. we bind the formGroup to the feedbackForm >> [formGroup]="feedbackForm"
+```
+   <form novalidate [formGroup]="feedbackForm" (ngSubmit)="onSubmit()">
+          <p>
+            <md-input-container class="half-width">
+              <input mdInput formControlName="firstname" placeholder="First Name" type="text" required>
+            </md-input-container>
+            <md-input-container class="half-width">
+              <input mdInput formControlName="lastname" placeholder="Last Name" type="text" required>
+            </md-input-container>
+          </p>
+        .....
+
+```
+7. Create component function and html button to submit form data and bind form ngSubmit to function
+
+```
+contact.component.ts>>
+  onSubmit() {
+    this.feedback = this.feedbackForm.value;
+    console.log(this.feedback);
+    this.feedbackForm.reset();
+  }
+
+contact.component.html>>
+ 
+  <form novalidate [formGroup]="feedbackForm" (ngSubmit)="onSubmit()">
+  ...
+  ....
+ <button type="submit" md-button class="background-primary text-floral-white">Submit</button>
+</form>
+```
+
+
