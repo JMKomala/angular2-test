@@ -15,11 +15,14 @@ export class MenuComponent implements OnInit {
   constructor(private dishService: DishService) { }
 
   ngOnInit() {
-    this.dishService.getDishes()
-    .then(response => {this.dishes = response})
-    .catch(error=>{console.log(error)});
+    // this.dishService.getDishes()
+    // .then(response => {this.dishes = response})
+    // .catch(error=>{console.log(error)});
 
+    //SUBSCRIBE TO OBSERVER
+    this.dishService.getDishes().subscribe(response => this.dishes = response);
   }
+
   onSelect = (dish) => {
     this.selectedDish = dish;
   }

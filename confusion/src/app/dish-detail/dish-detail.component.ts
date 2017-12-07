@@ -25,10 +25,12 @@ export class DishDetailComponent implements OnInit {
   ngOnInit() {
     let id = +this.route.snapshot.params['id'];
     // this.dish = this.dishService.getDish(id);
-    this.dishService.getDish(id)
-    .then(response=>{this.dish=response})
-    .catch(error=>{console.log(error)});
+
+    // this.dishService.getDish(id)
+    // .then(response=>{this.dish=response})
+    // .catch(error=>{console.log(error)});
     
+    this.dishService.getDish(id).subscribe(response => this.dish=response)
   }
 
   //allows us to go back to previous item in the browser
