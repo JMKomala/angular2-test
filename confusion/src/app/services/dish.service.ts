@@ -2,6 +2,9 @@ import { Injectable } from '@angular/core';
 import { Dish } from '../shared/classes/dish';
 import { DISHES } from '../shared/dishes';
 import { Observable } from 'rxjs/Observable';
+
+
+//import some operators that we need in our service
 // import 'rxjs/add/operator/toPromise';
 import 'rxjs/add/operator/delay';
 import 'rxjs/add/observable/of';
@@ -23,10 +26,12 @@ export class DishService {
   //   });
   // }
 
-  //Promise wiht observable
+  //Promise with observable
   //   getDishes(): Promise<Dish[]> {
   //     return Observable.of(DISHES).delay(2000).toPromise();
   // };
+
+  //of method used if you only one to return one value with the observable
   getDishes(): Observable<Dish[]> {
     return Observable.of(DISHES).delay(2000)
   };
@@ -38,6 +43,9 @@ export class DishService {
     return Observable.of(DISHES.filter((dish) => dish.featured)[0]).delay(2000)
   }
 
+  getDishIds(): Observable<number []>{
+    return Observable.of(DISHES.map(dish => dish.id)).delay(2000);
+  }
 
   //identify the dish with an id parameter given type number
   //use es6 filter to filter the array DISHES for matches of our criteria of the id. to only return the first one
